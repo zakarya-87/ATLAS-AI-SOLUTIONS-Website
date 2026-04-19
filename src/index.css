@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary: #bfa269;
+  --color-neon-cyan: #00F0FF;
+  --color-background-light: #f7f7f6;
+  --color-background-dark: #1d1a15;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "Space Grotesk", sans-serif;
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  }
+  .box-glow {
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
+  }
+  .gold-gradient-text {
+    background: linear-gradient(to right, #BFA36A, #EAD6A8, #BFA36A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gold-metallic-bg {
+    background: linear-gradient(135deg, #BFA36A 0%, #EAD6A8 50%, #BFA36A 100%);
+  }
+  .glass-panel {
+    background: rgba(191, 162, 105, 0.05);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(191, 163, 106, 0.2);
+  }
+}
+
+body {
+  @apply bg-background-light text-slate-900 dark:bg-background-dark dark:text-slate-100;
+  font-family: var(--font-sans);
+}

@@ -1,0 +1,31 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} { 
+      allow read, write: if false; 
+    }
+    
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    function incoming() { return request.resource.data; }
+    
+    function isValidContactFormSubmission(data) {
+      return data.keys().hasAll(['firstName', 'lastName', 'workEmail', 'company', 'areaOfInterest', 'message', 'createdAt'])
+        && data.keys().size() == 7
+        && data.firstName is string && data.firstName.size() <= 100
+        && data.lastName is string && data.lastName.size() <= 100
+        && data.workEmail is string && data.workEmail.size() <= 150
+        && data.company is string && data.company.size() <= 100
+        && data.areaOfInterest is string && data.areaOfInterest.size() <= 100
+        && data.message is string && data.message.size() <= 2000
+        && data.createdAt == request.time;
+    }
+    
+    match /contact_submissions/{submissionId} {
+      allow read, update, delete: if false;
+      allow create: if isValidId(submissionId)
+                    && isValidContactFormSubmission(incoming());
+    }
+  }
+}

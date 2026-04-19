@@ -1,0 +1,25 @@
+{
+  "entities": {
+    "ContactFormSubmission": {
+      "title": "Contact Form Submission",
+      "description": "A message submitted through the contact form on the landing page.",
+      "type": "object",
+      "properties": {
+        "firstName": { "type": "string", "description": "First name of the sender" },
+        "lastName": { "type": "string", "description": "Last name of the sender" },
+        "workEmail": { "type": "string", "description": "Email address of the sender" },
+        "company": { "type": "string", "description": "Company of the sender" },
+        "areaOfInterest": { "type": "string", "description": "The selected area of interest" },
+        "message": { "type": "string", "description": "The body of the message" },
+        "createdAt": { "type": "number", "description": "Server timestamp of when the message was recorded" }
+      },
+      "required": ["firstName", "lastName", "workEmail", "company", "areaOfInterest", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/contact_submissions/{submissionId}": {
+      "schema": "ContactFormSubmission",
+      "description": "Collection storing all incoming contact form submissions."
+    }
+  }
+}
