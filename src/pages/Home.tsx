@@ -133,15 +133,14 @@ function CorePlatforms() {
       title: "ATLAS AI Incubator: From Idea to Validated Strategy",
       tag: "INCUBATOR",
       icon: (
-        <div className="relative w-20 h-20 flex items-center justify-center text-[#00D4AA] group-hover:scale-110 transition-transform duration-500">
+        <div className="relative w-20 h-20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-500">
           <Globe className="absolute inset-0 w-full h-full opacity-20 animate-[spin_60s_linear_infinite]" />
-          <Network className="w-10 h-10 drop-shadow-[0_0_15px_rgba(0,212,170,0.8)]" />
+          <Network className="w-10 h-10 drop-shadow-[0_0_15px_rgba(191,162,105,0.5)]" />
         </div>
       ),
       desc: "Your Virtual Mentor and AI-Driven Business Analyst. Instead of hiring an expensive team of consultants, the ATLAS AI Incubator uses advanced AI models to instantly generate market research, financial forecasts, and strategic planning. Just input your business idea to get professional-grade, modular analysis including SWOT, PESTEL, operational budgets, and investor pitch decks in under 30 seconds.",
       action: "Start Your Free Idea Analysis",
-      link: "/incubator",
-      customStyle: true
+      link: "/incubator"
     }
   ];
 
@@ -164,54 +163,39 @@ function CorePlatforms() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {platforms.map((platform, idx) => {
-            const isIncubator = platform.tag === 'INCUBATOR';
-            return (
+          {platforms.map((platform, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className={`group flex flex-col rounded-2xl overflow-hidden border shadow-xl transition-all ${
-                isIncubator 
-                ? 'bg-[#1A1A2E] border-[#3E92CC]/40 hover:border-[#00D4AA]/70 hover:shadow-[0_0_35px_rgba(0,212,170,0.25)] relative' 
-                : 'bg-background-light dark:bg-background-dark border-primary/20 hover:border-gold-light/40 hover:shadow-[0_0_25px_rgba(191,162,105,0.2)]'
-              }`}
+              className="group flex flex-col bg-background-light dark:bg-background-dark rounded-2xl overflow-hidden border border-primary/20 shadow-xl hover:border-gold-light/40 transition-all hover:shadow-[0_0_25px_rgba(191,162,105,0.2)]"
             >
-              {isIncubator && (
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#00D4AA 1px, transparent 1px)', backgroundSize: '15px 15px' }}></div>
-              )}
-              <div className={`h-64 relative overflow-hidden flex items-center justify-center ${
-                isIncubator ? 'bg-[#0A2463]' : 'bg-slate-100 dark:bg-slate-900/50'
-              }`}>
-                <div className={`absolute inset-0 bg-gradient-to-t ${isIncubator ? 'from-[#1A1A2E]' : 'from-background-light dark:from-background-dark'} to-transparent opacity-80 z-10`}></div>
+              <div className="h-64 bg-slate-100 dark:bg-slate-900/50 relative overflow-hidden flex items-center justify-center">
+                <div className="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent opacity-80 z-10"></div>
                 <div className="relative z-0">
                   {platform.icon}
                 </div>
                 <div className="absolute bottom-4 left-6 z-20">
-                  <span className={`px-3 py-1 rounded-full text-xs font-bold border ${
-                    isIncubator 
-                      ? 'bg-[#00D4AA]/20 text-[#00D4AA] border-[#00D4AA]/40 shadow-[0_0_10px_rgba(0,212,170,0.2)]' 
-                      : 'bg-primary/20 text-background-dark text-xs font-bold gold-metallic-bg border-white/10'
-                  }`}>
+                  <span className="px-3 py-1 rounded-full text-background-dark text-xs font-bold gold-metallic-bg border border-white/10">
                     {platform.tag}
                   </span>
                 </div>
               </div>
               <div className="p-8 flex flex-col gap-4 flex-1 relative z-10">
-                <h3 className={`text-2xl font-bold ${isIncubator ? 'text-[#F5F5F5]' : 'text-slate-900 dark:text-slate-100'}`}>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
                   {platform.title}
                 </h3>
-                <p className={`text-sm leading-relaxed ${isIncubator ? 'text-[#C5D5E0]' : 'text-slate-600 dark:text-slate-400'}`}>
+                <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                   {platform.desc}
                 </p>
                 
                 {platform.features && (
                   <ul className="space-y-2 mb-4 mt-2">
                     {platform.features.map((feat, i) => (
-                      <li key={i} className={`flex items-center gap-2 text-sm ${isIncubator ? 'text-[#F5F5F5]/80' : 'text-slate-700 dark:text-slate-300'}`}>
-                        <CheckCircle className={`w-4 h-4 ${isIncubator ? 'text-[#00D4AA]' : 'text-primary'}`} /> {feat}
+                      <li key={i} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
+                        <CheckCircle className="w-4 h-4 text-primary" /> {feat}
                       </li>
                     ))}
                   </ul>
@@ -220,11 +204,7 @@ function CorePlatforms() {
                 {platform.tags && (
                   <div className="flex flex-wrap gap-2 mb-4 mt-2">
                     {platform.tags.map((tag, i) => (
-                      <span key={i} className={`px-2 py-1 border text-[10px] font-bold uppercase rounded ${
-                        isIncubator
-                          ? 'bg-[#3E92CC]/20 border-[#3E92CC]/40 text-[#7FDBDA]'
-                          : 'bg-primary/10 border-primary/20 text-primary'
-                      }`}>
+                      <span key={i} className="px-2 py-1 border text-[10px] font-bold uppercase rounded bg-primary/10 border-primary/20 text-primary">
                         {tag}
                       </span>
                     ))}
@@ -233,26 +213,18 @@ function CorePlatforms() {
 
                 <div className="mt-auto pt-4">
                   {platform.link ? (
-                    <Link to={platform.link} className={`w-full py-3 rounded-lg border font-bold transition-all flex items-center justify-center gap-2 ${
-                      isIncubator
-                        ? 'bg-[#00D4AA]/10 border-[#00D4AA]/40 text-[#00D4AA] hover:bg-[#00D4AA] hover:text-[#0A2463] hover:shadow-[0_0_20px_rgba(0,212,170,0.4)]'
-                        : 'border-primary/20 hover:bg-primary hover:text-background-dark text-primary hover:bg-primary/10 group-hover:bg-primary/10'
-                    }`}>
+                    <Link to={platform.link} className="w-full py-3 rounded-lg border font-bold transition-all flex items-center justify-center gap-2 border-primary/20 hover:bg-primary hover:text-background-dark text-primary hover:bg-primary/10 group-hover:bg-primary/10">
                       {platform.action} <ArrowRight className="w-4 h-4" />
                     </Link>
                   ) : (
-                    <button className={`w-full py-3 rounded-lg border font-bold transition-all flex items-center justify-center gap-2 ${
-                      isIncubator
-                        ? 'bg-[#00D4AA]/10 border-[#00D4AA]/40 text-[#00D4AA] hover:bg-[#00D4AA] hover:text-[#0A2463]'
-                        : 'border-primary/20 hover:bg-primary hover:text-background-dark text-primary hover:bg-primary/10 group-hover:bg-primary/10'
-                    }`}>
+                    <button className="w-full py-3 rounded-lg border font-bold transition-all flex items-center justify-center gap-2 border-primary/20 hover:bg-primary hover:text-background-dark text-primary hover:bg-primary/10 group-hover:bg-primary/10">
                       {platform.action} <ArrowRight className="w-4 h-4" />
                     </button>
                   )}
                 </div>
               </div>
             </motion.div>
-          )})}
+          ))}
         </div>
       </div>
     </section>
